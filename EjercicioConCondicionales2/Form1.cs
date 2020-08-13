@@ -26,22 +26,51 @@ namespace EjercicioConCondicionales2
 
             salariob = horast * valorh;
 
-            if (salariob > 1000000) {
-                salud = salariob * 0.04;
-                incremento = 0;
-                
-            }
-            else{
-                incremento = salariob * 0.02;
-                salud = 0;
-            }
-            salariof = salariob - salud + incremento;
+            switch (cmb_empleadoadmin.SelectedItem) {
+                case "No":
+                    if (salariob > 1000000)
+                    {
+                        salud = salariob * 0.04;
+                        incremento = 0;
 
-            lbl_salariob.Text = Convert.ToString("$"+String.Format("{0:n0}", salariob));
-            lbl_descuentosalud.Text = Convert.ToString("$" + String.Format("{0:n0}", salud));
-            lbl_incremento.Text = Convert.ToString("$" + String.Format("{0:n0}", incremento));
-            lbl_salariof.Text = Convert.ToString("$" + String.Format("{0:n0}", salariof));
+                    }
+                    else
+                    {
+                        incremento = salariob * 0.02;
+                        salud = 0;
+                    }
+                    salariof = salariob - salud + incremento;
 
+
+                    lbl_salariob.Text = Convert.ToString("$" + String.Format("{0:n0}", salariob));
+                    lbl_descuentosalud.Text = Convert.ToString("$" + String.Format("{0:n0}", salud));
+                    lbl_incremento.Text = Convert.ToString("$" + String.Format("{0:n0}", incremento));
+                    lbl_salariof.Text = Convert.ToString("$" + String.Format("{0:n0}", salariof));
+                    break;
+
+                case "Si":
+                    if (salariob > 1000000)
+                    {
+                        salud = salariob * 0.08;
+                        incremento = 0;
+
+                    }
+                    else
+                    {
+                        incremento = salariob * 0.01;
+                        salud = 0;
+                    }
+                    salariof = salariob - salud + incremento;
+
+
+                    lbl_salariob.Text = Convert.ToString("$" + String.Format("{0:n0}", salariob));
+                    lbl_descuentosalud.Text = Convert.ToString("$" + String.Format("{0:n0}", salud));
+                    lbl_incremento.Text = Convert.ToString("$" + String.Format("{0:n0}", incremento));
+                    lbl_salariof.Text = Convert.ToString("$" + String.Format("{0:n0}", salariof));
+                    break;
+
+            }
+                       
             gb_resumenpago.Visible = true;
 
         }
@@ -50,11 +79,13 @@ namespace EjercicioConCondicionales2
         {
             txt_horast.Text = String.Empty;
             txt_valorh.Text = String.Empty;
-            lbl_salariob.Text = "0";
-            lbl_descuentosalud.Text = "0";
-            lbl_incremento.Text = "0";
-            lbl_salariof.Text = "0";
+            gb_resumenpago.Visible = false;
             txt_horast.Focus();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmb_empleadoadmin.SelectedIndex = 0;
         }
     }
 }
